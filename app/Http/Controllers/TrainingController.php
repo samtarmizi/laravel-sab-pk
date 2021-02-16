@@ -37,4 +37,14 @@ class TrainingController extends Controller
         return redirect('/trainings');
 
     }
+
+    public function show(Training $training)
+    {
+        return view('trainings.show', compact('training'));
+    }
+
+    public function edit(Training $training)
+    {
+        return view('trainings.edit', compact('training'));
+    }
 }
