@@ -13,6 +13,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Title</th>
+                                <th>Creator</th>
                                 <th>Created At<th>
                             </tr>
                         </thead>
@@ -21,6 +22,7 @@
                                 <tr>
                                     <td>{{ $training->id }}</td>
                                     <td>{{ $training->title }}</td>
+                                    <td>{{ $training->user->name }}</td>
                                     <td>{{ $training->created_at }}</td>
                                 </tr>
                             @empty
