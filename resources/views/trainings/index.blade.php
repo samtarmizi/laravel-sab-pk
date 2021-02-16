@@ -15,6 +15,7 @@
                                 <th>Title</th>
                                 <th>Creator</th>
                                 <th>Created At<th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -24,6 +25,11 @@
                                     <td>{{ $training->title }}</td>
                                     <td>{{ $training->user->name }}</td>
                                     <td>{{ $training->created_at }}</td>
+                                    <td>
+                                        <a href="{{ route('training:show', $training) }}" class="btn btn-primary">Show</a>
+                                        <hr>
+                                        <a href="{{ route('training:edit', $training) }}" class="btn btn-success">Edit</a>
+                                    </td>
                                 </tr>
                             @empty
                                 <td>No data</td>
