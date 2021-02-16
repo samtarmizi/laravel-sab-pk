@@ -27,11 +27,15 @@ class TrainingController extends Controller
     {
         // store the data into db
         //Method 1 - POPO | Plain Old PHP Object
-        $training = new Training();
-        $training->title = $request->title;
-        $training->description = $request->description;
-        $training->user_id = auth()->user()->id;
-        $training->save();
+        // $training = new Training();
+        // $training->title = $request->title;
+        // $training->description = $request->description;
+        // $training->user_id = auth()->user()->id;
+        // $training->save();
+
+        // Method 2 - Mass Assignment + Relationship
+        $user = auth()->user();
+        $user->trainings()->create($request->only('title','description'));
 
         // return to /trainings
         return redirect('/trainings');
@@ -51,9 +55,13 @@ class TrainingController extends Controller
     public function update(Training $training, Request $request)
     {
         // update data from form to db
-        $training->title = $request->title;
-        $training->description = $request->description;
-        $training->save();
+        // Method 1 - POPO
+        // $training->title = $request->title;
+        // $training->description = $request->description;
+        // $training->save();
+
+        // Method 2 - Mass Assignment
+        $training->update($request->only('title','description'));
 
         // return to /trainings
         return redirect()->route('training:index');

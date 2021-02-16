@@ -9,6 +9,11 @@ class Training extends Model
 {
     use HasFactory;
 
+    // define fillables for mass assignments
+    protected $fillable = [
+        'title', 'description', 'user_id'
+    ];
+
     // one training belongs to one user
     public function user()
     {
