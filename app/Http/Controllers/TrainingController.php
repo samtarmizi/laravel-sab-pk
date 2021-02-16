@@ -7,6 +7,11 @@ use App\Models\Training;
 
 class TrainingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         // query all trainings from DB using Model
