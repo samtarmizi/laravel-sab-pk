@@ -29,6 +29,14 @@
                                         <a href="{{ route('training:show', $training) }}" class="btn btn-primary">Show</a>
                                         <hr>
                                         <a href="{{ route('training:edit', $training) }}" class="btn btn-success">Edit</a>
+                                        <hr>
+                                        <a
+                                            onclick="return confirm('Are you sure want to delete?')"
+                                            href="{{ route('training:delete', $training) }}"
+                                            class="btn btn-danger"
+                                        >
+                                            Delete
+                                        </a>
                                     </td>
                                 </tr>
                             @empty
