@@ -8,7 +8,8 @@
                 <div class="card-header">{{ __('Training Create Form') }}</div>
 
                 <div class="card-body">
-                    <form action="" method="">
+                    <form action="" method="POST">
+                        @csrf
                         <div class="form-group">
                             <label>Title</label>
                             <input type="text" name="title" class="form-control">
