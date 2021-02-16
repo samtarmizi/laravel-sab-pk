@@ -15,7 +15,7 @@ class TrainingController extends Controller
     public function index()
     {
         // query all trainings from DB using Model
-        $trainings = Training::all();
+        $trainings = Training::paginate(2); // per page 2
 
         // return to view with all trainings
         // resources/views/trainings/index.blade.php
