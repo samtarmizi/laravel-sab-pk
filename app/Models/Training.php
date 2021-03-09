@@ -11,7 +11,7 @@ class Training extends Model
 
     // define fillables for mass assignments
     protected $fillable = [
-        'title', 'description', 'user_id'
+        'title', 'description', 'user_id', 'attachment'
     ];
 
     // one training belongs to one user

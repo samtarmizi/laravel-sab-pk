@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Training;
+use Storage;
+use File;
 
 class TrainingController extends Controller
 {
@@ -40,7 +42,19 @@ class TrainingController extends Controller
 
         // Method 2 - Mass Assignment + Relationship
         $user = auth()->user();
-        $user->trainings()->create($request->only('title', 'description'));
+        $training = $user->trainings()->create($request->only('title', 'description'));
+
+        //check if has attachment
+        if ($request->hasFile('attachment')) {
+            // rename 200-2021-03-09.png
+            $filename = $training->id.'-'.date("Y-m-d").'.'.$request->attachment->getClientOriginalExtension();
+
+            // save to table
+            $training->update(['attachment' => $filename]); // mass assignment + fillable properties
+
+            //store file
+            Storage::disk('public')->put($filename, File::get($request->attachment));
+        }
 
         // return to /trainings
         return redirect('/trainings')
