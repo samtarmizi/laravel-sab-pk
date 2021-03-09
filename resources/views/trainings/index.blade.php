@@ -31,10 +31,15 @@
                                     <td>{{ $training->user->name }}</td>
                                     <td>{{ $training->created_at }}</td>
                                     <td>
-                                        <a href="{{ route('training:show', $training) }}" class="btn btn-primary">Show</a>
-                                        <hr>
-                                        <a href="{{ route('training:edit', $training) }}" class="btn btn-success">Edit</a>
-                                        <hr>
+                                        @can('view', $training)
+                                            <a href="{{ route('training:show', $training) }}" class="btn btn-primary">Show</a>
+                                            <hr>
+                                        @endcan
+                                        @can('update', $training)
+                                            <a href="{{ route('training:edit', $training) }}" class="btn btn-success">Edit</a>
+                                            <hr>
+                                        @endcan
+                                        @can('delete', $training)
                                         <a
                                             onclick="return confirm('Are you sure want to delete?')"
                                             href="{{ route('training:delete', $training) }}"
@@ -42,6 +47,7 @@
                                         >
                                             Delete
                                         </a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @empty

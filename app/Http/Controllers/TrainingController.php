@@ -66,16 +66,19 @@ class TrainingController extends Controller
 
     public function show(Training $training)
     {
+        $this->authorize('view', $training);
         return view('trainings.show', compact('training'));
     }
 
     public function edit(Training $training)
     {
+        $this->authorize('update', $training);
         return view('trainings.edit', compact('training'));
     }
 
     public function update(Training $training, Request $request)
     {
+        $this->authorize('update', $training);
         // update data from form to db
         // Method 1 - POPO
         // $training->title = $request->title;
@@ -95,6 +98,8 @@ class TrainingController extends Controller
 
     public function delete(Training $training)
     {
+        $this->authorize('delete', $training);
+
         if ($training->attachment != null) {
             Storage::disk('public')->delete($training->attachment);
         }
