@@ -40,11 +40,14 @@ class TrainingController extends Controller
 
         // Method 2 - Mass Assignment + Relationship
         $user = auth()->user();
-        $user->trainings()->create($request->only('title','description'));
+        $user->trainings()->create($request->only('title', 'description'));
 
         // return to /trainings
-        return redirect('/trainings');
-
+        return redirect('/trainings')
+                    ->with([
+                        'alert-type' => 'alert-primary',
+                        'alert' => 'Your training has been saved.'
+                    ]);
     }
 
     public function show(Training $training)
@@ -66,16 +69,24 @@ class TrainingController extends Controller
         // $training->save();
 
         // Method 2 - Mass Assignment
-        $training->update($request->only('title','description'));
+        $training->update($request->only('title', 'description'));
 
         // return to /trainings
-        return redirect()->route('training:index');
+        return redirect()->route('training:index')
+            ->with([
+                'alert-type' => 'alert-success',
+                'alert' => 'Your training has been updated.'
+            ]);
     }
 
     public function delete(Training $training)
     {
         $training->delete();
 
-        return redirect()->route('training:index');
+        return redirect()->route('training:index')
+            ->with([
+                'alert-type' => 'alert-danger',
+                'alert' => 'Your training has been deleted.'
+            ]);
     }
 }

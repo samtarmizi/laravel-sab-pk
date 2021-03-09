@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if (session()->has('alert'))
+                <div class="alert {{ session()->get('alert-type') }}" role="alert">
+                    {{ session()->get('alert') }}
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">{{ __('My Training List') }}</div>
 
