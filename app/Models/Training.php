@@ -19,4 +19,10 @@ class Training extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    //getter - return attachment url $training->attachment_url
+    public function getAttachmentUrlAttribute()
+    {
+        return asset('storage/'.$this->attachment);
+    }
 }

@@ -17,6 +17,10 @@
                         <label>Description</label>
                         <textarea name="description" cols="20" rows="5" class="form-control" readonly>{{ $training->description }}</textarea>
                     </div>
+
+                    <div class="form-group">
+                        <a href="{{ $training->attachment_url }}">View Attachment</a>
+                    </div>
                 </div>
             </div>
         </div>
