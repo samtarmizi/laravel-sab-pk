@@ -95,6 +95,10 @@ class TrainingController extends Controller
 
     public function delete(Training $training)
     {
+        if ($training->attachment != null) {
+            Storage::disk('public')->delete($training->attachment);
+        }
+        
         $training->delete();
 
         return redirect()->route('training:index')
