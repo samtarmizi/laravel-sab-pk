@@ -29,3 +29,5 @@ Route::get('/trainings/{training}', [App\Http\Controllers\TrainingController::cl
 Route::get('/trainings/{training}/edit', [App\Http\Controllers\TrainingController::class, 'edit'])->name('training:edit');
 Route::post('/trainings/{training}/edit', [App\Http\Controllers\TrainingController::class, 'update'])->name('training:update');
 Route::get('/trainings/{training}/delete', [App\Http\Controllers\TrainingController::class, 'delete'])->name('training:delete');
+
+Route::view('/test', 'admin.layouts.main');
