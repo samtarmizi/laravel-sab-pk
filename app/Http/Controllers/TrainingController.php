@@ -14,10 +14,15 @@ class TrainingController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        // query all trainings from DB using Model
-        $trainings = Training::paginate(2); // per page 2
+        if ($request->keyword != null) {
+            //query based on keyword
+            $trainings = Training::where('title', 'LIKE', '%'.$request->keyword.'%')->paginate(2);
+        } else {
+            // query all trainings from DB using Model
+            $trainings = Training::paginate(2); // per page 2
+        }
 
         // return to view with all trainings
         // resources/views/trainings/index.blade.php

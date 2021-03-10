@@ -10,7 +10,19 @@
                 </div>
             @endif
             <div class="card">
-                <div class="card-header">{{ __('My Training List') }}</div>
+                <div class="card-header">
+                    {{ __('My Training List') }}
+                    <div class="float-right">
+                        <form action="" method="">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="keyword" value="{{ request()->get('keyword') }}">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
                 <div class="card-body">
                     <table class="table">
@@ -55,7 +67,11 @@
                             @endforelse
                         </tbody>
                     </table>
-                    {{ $trainings->links() }}
+                    {{ 
+                        $trainings->appends([
+                            'keyword' => request()->get('keyword')
+                        ])->links() 
+                    }}
                 </div>
             </div>
         </div>
