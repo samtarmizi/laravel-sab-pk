@@ -74,7 +74,10 @@ class TrainingController extends Controller
         // });
 
         // Method 2: Send Email using Mailable Class
-        Mail::to('tarmizi@mizi.my')->send(new TrainingCreatedMail($training));
+        // Mail::to('tarmizi@mizi.my')->send(new TrainingCreatedMail($training));
+
+        // Method 3: Send Email with Job
+        dispatch(new \App\Jobs\SendEmailJob($training));
 
         // return to /trainings
         return redirect('/trainings')
