@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Training;
 use Storage;
 use File;
+use Mail;
+use App\Mail\TrainingCreatedMail;
 
 class TrainingController extends Controller
 {
@@ -60,6 +62,19 @@ class TrainingController extends Controller
             //store file
             Storage::disk('public')->put($filename, File::get($request->attachment));
         }
+
+        // send email - training has been created
+        // resources/views/emails/training-created.blade.php
+        // Mail::send('emails.training-created', [
+        //     'title' => $training->title,
+        //     'description' => $training->description
+        // ], function ($message) {
+        //     $message->to('tarmizi@mizi.my');
+        //     $message->subject('Training Created: Using Inline Mail Facade');
+        // });
+
+        // Method 2: Send Email using Mailable Class
+        Mail::to('tarmizi@mizi.my')->send(new TrainingCreatedMail($training));
 
         // return to /trainings
         return redirect('/trainings')
